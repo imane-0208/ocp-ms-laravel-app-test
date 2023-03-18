@@ -22,7 +22,7 @@ class PostRequest extends FormRequest
         return [
             'name' => 'required|string',
             'description' => 'required|string',
-            'img_path' => 'required'
+            
         ];
     }
 }

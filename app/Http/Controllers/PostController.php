@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -51,15 +52,28 @@ class PostController extends Controller
                 }
             ])
             ->first();
-        // dd($post);
         return view('post', compact('post'));
     }
 
+    //delete post
     function destroy($id){
 
         $post = Post::find($id);
         $post->delete();
 
         return redirect()->back()->with('success', 'Data deleted successfully');
+    }
+
+
+    //update post
+    function update(PostRequest $request){
+
+        Post::where('id', $request->post_id)->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            
+         ]);
+
+        return redirect()->back()->with('success', 'Data updated successfully');
     }
 }

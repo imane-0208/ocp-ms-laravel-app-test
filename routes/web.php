@@ -25,13 +25,14 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
-    //post routes
+    //home route
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     //post routes
     Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
     Route::get('/post/{id}', [PostController::class, 'getOnePost'])->name('post');
     Route::delete('/post/delete/{id}', [PostController::class, 'destroy'])->name('post.delete');
+    Route::put('/post/update/', [PostController::class, 'update'])->name('post.update');
 
     //comment routes
     Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
@@ -41,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     //reply routes
     Route::post('/reply/store', [ReplyController::class, 'store'])->name('reply.store');
     Route::delete('/reply/delete/{id}', [ReplyController::class, 'destroy'])->name('reply.delete');
-    Route::put('/replyy/update/', [ReplyController::class, 'update'])->name('reply.update');
+    Route::put('/reply/update/', [ReplyController::class, 'update'])->name('reply.update');
 
 
 });

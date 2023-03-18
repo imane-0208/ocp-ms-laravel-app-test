@@ -39,6 +39,6 @@ class CommentController extends Controller
             
          ]);
 
-        return redirect()->back()->with('success', 'Data deleted successfully');
+        return redirect()->back()->with('success', 'Data updated successfully');
     }
 }

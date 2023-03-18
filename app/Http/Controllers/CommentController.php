@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-
     //store comment
 
     public function store(CommentRequest $request)
@@ -16,29 +15,33 @@ class CommentController extends Controller
         $requestData = $request->all();
         Comment::create($requestData);
 
-        return redirect()->back()->with('success', 'Data inserted successfully');
-
+        return redirect()
+            ->back()
+            ->with('success', 'Data inserted successfully');
     }
 
     //delete comment
 
-    function destroy($id){
-
+    function destroy($id)
+    {
         $comment = Comment::find($id);
         $comment->delete();
 
-        return redirect()->back()->with('success', 'Data deleted successfully');
+        return redirect()
+            ->back()
+            ->with('success', 'Data deleted successfully');
     }
 
-    //update comment 
+    //update comment
 
-    function update(CommentRequest $request){
-
+    function update(CommentRequest $request)
+    {
         Comment::where('id', $request->comment_id)->update([
-            'content' => $request->content
-            
-         ]);
+            'content' => $request->content,
+        ]);
 
-        return redirect()->back()->with('success', 'Data updated successfully');
+        return redirect()
+            ->back()
+            ->with('success', 'Data updated successfully');
     }
 }

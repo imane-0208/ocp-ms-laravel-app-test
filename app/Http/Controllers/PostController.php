@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
-
     //create post
 
     public function store(PostRequest $request)
@@ -49,31 +48,33 @@ class PostController extends Controller
                 },
                 'user' => function ($q) {
                     $q->first();
-                }
+                },
             ])
             ->first();
         return view('post', compact('post'));
     }
 
     //delete post
-    function destroy($id){
-
+    function destroy($id)
+    {
         $post = Post::find($id);
         $post->delete();
 
-        return redirect()->back()->with('success', 'Data deleted successfully');
+        return redirect()
+            ->back()
+            ->with('success', 'Data deleted successfully');
     }
 
-
     //update post
-    function update(PostRequest $request){
-
+    function update(PostRequest $request)
+    {
         Post::where('id', $request->post_id)->update([
             'name' => $request->name,
             'description' => $request->description,
-            
-         ]);
+        ]);
 
-        return redirect()->back()->with('success', 'Data updated successfully');
+        return redirect()
+            ->back()
+            ->with('success', 'Data updated successfully');
     }
 }

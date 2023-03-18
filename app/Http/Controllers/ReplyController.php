@@ -12,33 +12,36 @@ class ReplyController extends Controller
 
     public function store(ReplyRequest $request)
     {
-        
         $requestData = $request->all();
         Reply::create($requestData);
 
-        return redirect()->back()->with('success', 'Data inserted successfully');
-
+        return redirect()
+            ->back()
+            ->with('success', 'Data inserted successfully');
     }
 
     // delete reply
-    
-    function destroy($id){
 
+    function destroy($id)
+    {
         $reply = Reply::find($id);
         $reply->delete();
 
-        return redirect()->back()->with('success', 'Data deleted successfully');
+        return redirect()
+            ->back()
+            ->with('success', 'Data deleted successfully');
     }
 
-    //update comment 
+    //update comment
 
-    function update(ReplyRequest $request){
-
+    function update(ReplyRequest $request)
+    {
         Reply::where('id', $request->reply_id)->update([
-            'content' => $request->content
-            
-         ]);
+            'content' => $request->content,
+        ]);
 
-        return redirect()->back()->with('success', 'Data updated successfully');
+        return redirect()
+            ->back()
+            ->with('success', 'Data updated successfully');
     }
 }
